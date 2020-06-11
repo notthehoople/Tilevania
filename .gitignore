@@ -14,8 +14,8 @@
 [Aa]ssets/Z.KenneyAssets.meta
 [Aa]ssets/Plugins/GitHub
 [Aa]ssets/Plugins/GitHub.meta
-[Aa]ssets/Sprites/Not*.meta
-[Aa]ssets/Sprites/Not*
+[Aa]ssets/Sprites*/Sprites/NotInUse.meta
+[Aa]ssets/Sprites*/Sprites/NotInUse
 
 # Visual Studio cache directory
 .vs/
