@@ -9,13 +9,15 @@ public class Player : MonoBehaviour
 
     // Cached References
     Rigidbody2D myRigidBody;
+    Animator playerAnimator;
 
+    // Methods
     private void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         Move();
@@ -24,13 +26,18 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        // TODO: Changing transform.position to use RigidBody2D.velocity for now. Might swap this back later
-        //var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        //transform.position = new Vector2(transform.position.x + deltaX, transform.position.y);
-
-        // TODO: RigidBody2D.velocity method of moving. When you let go of the key the player still moves
         float controlInput = Input.GetAxis("Horizontal");
         myRigidBody.velocity = new Vector2(controlInput * moveSpeed, myRigidBody.velocity.y);
+
+        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
+        if (playerHasHorizontalSpeed)
+        {
+            playerAnimator.SetBool("IsRunning", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("IsRunning", false);
+        }
     }
 
     private void FlipSprite()
@@ -40,8 +47,8 @@ public class Player : MonoBehaviour
         // if the player is moving horizontally
         if (playerHasHoriztonalSpeed)
         {
+            // -ve makes the player sprite face left; +ve makes player sprite face right
             transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x),1f);
         }
-            // reverse the current scaling of x axis
     }
 }
