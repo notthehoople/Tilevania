@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Author: Dave Hampson
+// From Unity Community page FramesPerSecond http://wiki.unity3d.com/index.php?title=FramesPerSecond
+
 public class FPSdisplay : MonoBehaviour
 {
 	float deltaTime = 0.0f;
