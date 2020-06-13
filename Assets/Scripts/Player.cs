@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] float climbSpeed = 5f;
+    [SerializeField] Vector2 deathKick = new Vector2(25f, 25f);
+
+    bool isAlive = true;
 
     // Cached References
     Rigidbody2D playerRigidBody;
@@ -28,10 +31,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!isAlive) { return; }
+
         Move();
         Jump();
         Climb();
         FlipSprite();
+        Die();
     }
 
     private void Move()
@@ -81,6 +87,16 @@ public class Player : MonoBehaviour
         {
             // -ve makes the player sprite face left; +ve makes player sprite face right
             transform.localScale = new Vector2(Mathf.Sign(playerRigidBody.velocity.x),1f);
+        }
+    }
+
+    private void Die()
+    {
+        if (playerBodyCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
+            playerAnimator.SetTrigger("Dying");
+            playerRigidBody.velocity = deathKick;
         }
     }
 }
