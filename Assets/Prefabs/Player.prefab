@@ -134,7 +134,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 481d6878d32f74024bb0b9b50c86f788, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.053129673, y: -0.120000005}
@@ -155,7 +155,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpSpeed: 28
   climbSpeed: 5
-  deathKick: {x: 250, y: 250}
+  deathKick: {x: 50, y: 100}
 --- !u!61 &8642889875489492672
 BoxCollider2D:
   m_ObjectHideFlags: 0
